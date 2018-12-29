@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class KakaoController {
+
   private KakaoOAuthUtil kakaoOAuthUtil;
 
   public KakaoController(KakaoOAuthUtil kakaoOAuthUtil) {
@@ -17,9 +18,8 @@ public class KakaoController {
   }
 
   @GetMapping("/")
-  public String getLogin(Model model) {
+  public String getLogin() {
     String kakaoUrl = kakaoOAuthUtil.getAuthorizationUrl();
-    model.addAttribute("kakaoUrl", kakaoUrl);
     return "redirect:" + kakaoUrl;
   }
 
@@ -38,7 +38,7 @@ public class KakaoController {
     modelMap.addAttribute("nickname", nickname);
     modelMap.addAttribute("image", image);
 
-    return "SUCCESS";
+    return "result";
   }
 
 }
